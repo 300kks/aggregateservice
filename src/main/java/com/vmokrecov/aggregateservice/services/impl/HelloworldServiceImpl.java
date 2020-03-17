@@ -11,10 +11,10 @@ import reactor.core.publisher.Mono;
 @Service
 public class HelloworldServiceImpl implements HelloworldService {
 
-    @Value("${service.uri.helloservice:http://localhost:8081/hello}")
+    @Value("${service.uri.helloservice}")
     private String helloserviceUri;
 
-    @Value("${service.uri.worldservice:http://localhost:8082/world}")
+    @Value("${service.uri.worldservice}")
     private String worldserviceUri;
 
     @Override
