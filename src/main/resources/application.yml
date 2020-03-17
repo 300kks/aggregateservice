@@ -10,4 +10,4 @@ opentracing:
 services:
   uri:
     helloservice: http://helloservice:8081/hello
-    worldservice: http://worldservice;8082/world
+    worldservice: http://worldservice:8082/world
