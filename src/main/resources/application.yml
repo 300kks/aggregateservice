@@ -9,5 +9,5 @@ opentracing:
 
 services:
   uri:
-    helloservice: http://helloservice/hello
-    worldservice: http://worldservice/world
+    helloservice: http://helloservice:8081/hello
+    worldservice: http://worldservice;8082/world
