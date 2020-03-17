@@ -6,3 +6,8 @@ opentracing:
   jaeger:
     http-sender:
       url: http://jaeger-collector.istio-system:14268/api/traces
+
+services:
+  uri:
+    helloservice: http://helloservice/hello
+    worldservice: http://worldservice/world
