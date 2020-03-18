@@ -6,7 +6,7 @@ metadata:
   name: aggregateservice
   labels:
     helm.sh/chart: aggregateservice-0.1.0
-    app: api-service
+    app: aggregateservice
     version: v1
     app.kubernetes.io/name: aggregateservice
     app.kubernetes.io/instance: aggregateservice
@@ -20,7 +20,7 @@ metadata:
   name: aggregateservice
   labels:
     helm.sh/chart: aggregateservice-0.1.0
-    app: api-service
+    app: aggregateservice
     version: v1
     app.kubernetes.io/name: aggregateservice
     app.kubernetes.io/instance: aggregateservice
@@ -34,7 +34,7 @@ spec:
       protocol: TCP
       name: nginx
   selector:
-    app: api-service
+    app: aggregateservice
     version: v1
     app.kubernetes.io/name: aggregateservice
     app.kubernetes.io/instance: aggregateservice
@@ -46,7 +46,7 @@ metadata:
   name: aggregateservice
   labels:
     helm.sh/chart: aggregateservice-0.1.0
-    app: api-service
+    app: aggregateservice
     version: v1
     app.kubernetes.io/name: aggregateservice
     app.kubernetes.io/instance: aggregateservice
@@ -56,14 +56,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api-service
+      app: aggregateservice
       version: v1
       app.kubernetes.io/name: aggregateservice
       app.kubernetes.io/instance: aggregateservice
   template:
     metadata:
       labels:
-        app: api-service
+        app: aggregateservice
         version: v1
         app.kubernetes.io/name: aggregateservice
         app.kubernetes.io/instance: aggregateservice
