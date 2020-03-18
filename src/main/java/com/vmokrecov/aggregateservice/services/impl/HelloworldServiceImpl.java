@@ -17,6 +17,12 @@ public class HelloworldServiceImpl implements HelloworldService {
     @Value("${services.uri.worldservice}")
     private String worldserviceUri;
 
+    private final WebClient client;
+
+    public HelloworldServiceImpl(WebClient client) {
+        this.client = client;
+    }
+
     @Override
     public Mono<HelloWorldDTO> getHelloworld() {
         Mono<String> hello = getMessage(helloserviceUri);
@@ -30,9 +36,9 @@ public class HelloworldServiceImpl implements HelloworldService {
     }
 
     private Mono<String> getMessage(String uri) {
-        return WebClient
-                .create(uri)
+        return client
                 .get()
+                .uri(uri)
                 .retrieve()
                 .bodyToMono(String.class);
     }
