@@ -47,7 +47,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "aggregateservice.selectorLabels" -}}
-app: api-service
+app: aggregateservice
 version: v1
 app.kubernetes.io/name: {{ include "aggregateservice.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
