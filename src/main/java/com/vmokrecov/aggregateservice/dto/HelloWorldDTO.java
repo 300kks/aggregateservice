@@ -1,10 +1,12 @@
 package com.vmokrecov.aggregateservice.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class HelloWorldDTO {
 
-    public final String helloMessage;
-    public final String worldMessage;
+    private String helloMessage;
+    private String worldMessage;
 }

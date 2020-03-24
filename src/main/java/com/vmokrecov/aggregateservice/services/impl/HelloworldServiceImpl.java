@@ -17,7 +17,7 @@ public class HelloworldServiceImpl implements HelloworldService {
     @Value("${services.uri.worldservice}")
     private String worldserviceUri;
 
-    private final WebClient client;
+    private WebClient client;
 
     public HelloworldServiceImpl(WebClient client) {
         this.client = client;

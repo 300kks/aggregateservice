@@ -3,6 +3,7 @@ package com.vmokrecov.aggregateservice.aggregators;
 import com.vmokrecov.aggregateservice.dto.HelloWorldDTO;
 
 public class Aggregator {
+
     private String message1;
     private String message2;
 

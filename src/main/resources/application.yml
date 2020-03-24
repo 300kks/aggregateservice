@@ -2,6 +2,13 @@ spring:
   application:
     name: aggregateservice
 
+auth:
+  client-id: server_app
+  client-secret: secret
+  access-token-url: http://localhost:8090/oauth/token
+  grant-type: client_credentials
+  scope: server
+
 opentracing:
   jaeger:
     http-sender:
