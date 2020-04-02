@@ -37,7 +37,7 @@ public class WebClientConfig {
         if (token == null || token.isExpired()) token = serverAuth();
 
         return next.exchange(ClientRequest.from(request)
-                .header(HttpHeaders.AUTHORIZATION, "Bearer" + token.getAccessToken())
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
                 .build());
     }
 
