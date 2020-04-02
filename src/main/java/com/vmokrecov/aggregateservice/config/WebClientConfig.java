@@ -17,7 +17,7 @@ import java.util.Collections;
 public class WebClientConfig {
 
     private final Tracer tracer;
-    private JwtTokenDTO token;
+    private Mono<JwtTokenDTO> token = Mono.empty();
     private AuthConfigurationProperties configuration;
 
     public WebClientConfig(AuthConfigurationProperties configuration, Tracer tracer) {
@@ -34,14 +34,14 @@ public class WebClientConfig {
     }
 
     protected Mono<ClientResponse> authTokenFilter(ClientRequest request, ExchangeFunction next) {
-        if (token == null || token.isExpired()) token = serverAuth();
-
-        return next.exchange(ClientRequest.from(request)
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
-                .build());
+        return token
+                .switchIfEmpty(serverAuth())
+                .flatMap(jwtTokenDTO -> jwtTokenDTO.isExpired() ? serverAuth() : Mono.just(jwtTokenDTO))
+                .flatMap(jwtTokenDTO -> next.exchange(ClientRequest.from(request).header(
+                        HttpHeaders.AUTHORIZATION, "Bearer " + jwtTokenDTO.getAccessToken()).build()));
     }
 
-    private JwtTokenDTO serverAuth() {
+    private Mono<JwtTokenDTO> serverAuth() {
         return WebClient.builder()
                 .filter(new TracingExchangeFilterFunction(tracer,
                         Collections.singletonList(new WebClientSpanDecorator.StandardTags())))
@@ -53,7 +53,6 @@ public class WebClientConfig {
                 .body(BodyInserters.fromFormData("grant_type", configuration.getGrantType())
                         .with("client_id", configuration.getClientId()))
                 .exchange()
-                .flatMap(response -> response.bodyToMono(JwtTokenDTO.class))
-                .block();
+                .flatMap(response -> response.bodyToMono(JwtTokenDTO.class));
     }
 }
