@@ -2,13 +2,13 @@ package com.vmokrecov.aggregateservice.controllers;
 
 import com.vmokrecov.aggregateservice.dto.HelloWorldDTO;
 import com.vmokrecov.aggregateservice.services.HelloworldService;
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@Api(tags = "AggregateController admin", description = "AggregateController description")
+@Tag(name = "AggregateController admin", description = "AggregateController description")
 public class AggregateController {
 
     private HelloworldService helloworldService;
